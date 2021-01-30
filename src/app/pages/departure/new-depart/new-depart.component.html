@@ -1,0 +1,180 @@
+<p>
+  Agregar Salidas
+</p>
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-body">
+
+           
+            <form [formGroup]="depart" class="m-4">
+                    <div class="row"> 
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Zona Horaria</label>
+                                <input type="text"  value="America/La_Paz" id="timeZone" #timeZone formControlName="timeZone" class="form-control" disabled>
+                              
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Hora de Salida</label>
+                                <input type="datetime" [(ngModel)]="departureTime"  id="departureTime"  value="2015-10-27T16:22:27.605-07:00"  formControlName="departureTime" class="form-control" placeholder="Hora de Salida">
+                                <small class="form-control-feedback"> Formato: 2015-10-28T16:22:27.605-07:00</small>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Hora de Llegada</label>
+                                <input type="datetime" [(ngModel)]="arrivalTime" id="arrivalTime" value="2015-10-28T16:22:27.605-07:00"  formControlName="arrivalTime" class="form-control" placeholder="Hora de Llegada">
+                                <small class="form-control-feedback"> Formato: 2015-10-28T16:22:27.605-07:00</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                      
+
+                 <div class="col-md-4">
+                        <div class="form-group">
+                                <label class="control-label">Ciudad de origen</label>
+                              
+                                <select id="originId" [(ngModel)]="originId" (ngModelChange)="origin()" formControlName="originId"   class="form-control custom-select">
+                                        <option *ngFor="let cities of city" [ngValue]="cities"  >{{cities.fullName}}</option>
+                                                       
+                                    </select>
+                        </div>
+                          
+
+                 </div>
+                 <div class="col-md-4">
+                        <div class="form-group">
+                                <label class="control-label">Ciudad de destino</label>
+                                <select id="destinationId" [(ngModel)]="destinationId" (ngModelChange)="desti($event)" formControlName="destinationId"   class="form-control custom-select">
+                                        <option *ngFor="let cities of city" [ngValue]="cities"  >{{cities.fullName}}</option>
+                                                    
+                                    </select>
+                        </div>
+
+                    
+                 </div>
+
+                 <div class="col-md-4">
+                        <div class="form-group">
+                                <label class="control-label">Duración en horas</label>
+                                <input type="number" id="duration"  min="0" #duration formControlName="duration" class="form-control" placeholder="Duración">
+                              
+                        </div>
+
+                    
+                 </div>
+                </div> 
+                 <div class="row">
+                      
+
+                        <div class="col-md-4">
+                               <div class="form-group">
+                                       <label class="control-label">Precio Total</label>
+                                       <input type="number" min="0" id="price" #price formControlName="price" class="form-control" placeholder="Precio">
+                                     
+                               </div>
+                                 
+       
+                        </div>
+       
+                        <div class="col-md-4">
+                               <div class="form-group">
+                                       <label class="control-label">Moneda</label>
+                                       <select  formControlName="currency" #currency  class="form-control custom-select">
+                                        <option value="BOB">BOB</option>
+                                        <option value="USD">USD</option>                  
+                                    </select>
+                                     
+                               </div>
+       
+                           
+                        </div>
+
+                 <div class="col-md-4">
+                        <div class="form-group">
+                                <label class="control-label">Descuento</label>
+                                <input type="number" min="0" id="discount" #discount formControlName="discount" class="form-control" placeholder="Descuento">
+                              
+                        </div>
+
+                 </div>
+            
+                </div>
+                <div class="row">
+                      
+
+                        <div class="col-md-3">
+                               <div class="form-group">
+                                       <label class="control-label">Número de Transferencia</label>
+                                       <input type="number" min="0" id="numTransfers" #numTransfers formControlName="numTransfers" class="form-control" placeholder="Número de Transferencia">
+                                     
+                               </div>
+                                 
+       
+                        </div>
+       
+                        <div class="col-md-3">
+                                <div class="form-group">
+                                        <label class="control-label">Código Bus</label>
+                                        <select id="busId" (ngModelChange)="bus($event)" formControlName="busId"   class="form-control custom-select">
+                                                <option *ngFor="let idBus of buses" [ngValue]="idBus">{{idBus.model}}</option>
+                                               <!-- <option value="40448df1-1751-415d-9351-35254c1d67d6">40448df1-1751-415d-9351-35254c1d67d6</option>-->                  
+                                            </select>
+                                </div>
+                           
+                        </div>
+
+                 <div class="col-md-3">
+                        <div class="form-group">
+                                <label class="control-label">Términos de Servicio</label>
+                                <select id="termsOfService" formControlName="termsOfService" #termsOfService  class="form-control custom-select">
+                                        <option value="reembolso">Política de Reembolso</option>
+                                        <option value="equipaje">Equipaje a llevar</option> 
+                                        <option value="equipajeFact">Equipaje facturado</option> 
+                                        <option value="embarque">Requerimientos de embarque</option>         
+                                        <option value="equipajeBig">Equipaje de gran tamaño</option>   
+                                        <option value="animales">Animales</option>                    
+                                    </select>
+                              
+                        </div>
+
+                 </div>
+
+                 <div class="col-md-3">
+                        <div class="form-group">
+                                <label class="control-label">Condición</label>
+                                <input type="text" id="condition" #condition formControlName="condition" class="form-control" placeholder="Condición">
+                              
+                        </div>
+
+                 </div>
+            
+                </div>         
+                
+<button (click)="Guardar()"  [disabled]="!depart.value.departureTime || !depart.value.arrivalTime
+|| !depart.value.originId || !depart.value.destinationId || !depart.value.duration || !depart.value.numTransfers || !depart.value.busId
+|| !depart.value.price || !depart.value.currency || !depart.value.discount || !depart.value.termsOfService || !depart.value.condition" class="btn btn-primary">
+        <i class="fa fa-save"></i>
+    </button>
+
+    <button type="button" class="btn btn-inverse  float-right" routerLink="/list-depart">Cancelar</button>
+               </form>                      
+        
+          </div>
+    
+
+  </div>
+</div>
+
+</div>
+
+
+

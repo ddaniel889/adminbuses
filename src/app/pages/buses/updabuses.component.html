@@ -1,0 +1,103 @@
+
+
+<div class="row">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+              <form [formGroup]="form" class="m-4" (ngSubmit)="onSubmit()" >
+                  <div class="form-body">
+                      <h3 class="card-title">Ingrese los datos del Bus</h3>
+                      <hr>
+                      <div class="row p-t-20">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Modelo</label>
+                                  <input type="text" id="modelo" #modelo formControlName="modelo" class="form-control" placeholder="">
+                                   </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Vin</label>
+                                  <input type="text"  #vin formControlName="vin" class="form-control" placeholder="">
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                      </div>
+                      <!--/row-->
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Clase</label>
+                                  <input type="text"  #clase formControlName="clase" class="form-control" placeholder="">
+                              </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Comodidades</label>
+                                  <input type="text"  #amenities  formControlName="amenities" class="form-control" placeholder="">  
+                              </div>
+                          </div>
+                          <!--/span-->
+                      </div>
+                      <!--/row-->
+                      <div class="row">
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                                <label class="control-label">Número de Asientos</label>
+                                                <input type="number" min="0"  #availableSeats formControlName="availableSeats" class="form-control" placeholder="">
+                                        </div>
+                                        <span ><button type="button" style="margin-top: 40px !important; margin-bottom: 15px !important;" class="btn btn-success" (click)="nextStep()">Mostrar tablero</button></span>
+                                </div>
+                               <!--provisional-->
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                                <label class="control-label"> Asientos</label>
+                                                <input type="text"   #aSeats formControlName="aSeats" class="form-control" placeholder="">
+                                        </div>
+                                    
+                                </div>
+                                <!--provisional-->
+
+                      </div>
+                      <div class="row mar">
+                        <div class="col-md-6"> 
+                        <div class="chart" [hidden]="!next">
+                            <div class="grid"  style="border: 1px solid #E7ECED; width: 100px;">
+                             <img src="assets/img/bus-volante.png">
+                            <div style="width: 100px;"> 
+                            <span *ngFor="let col of seats" (click)="seatClick(col)" [ngSwitch]="getStatus(col)">
+                                <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png"> 
+                                <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                            </span>
+                            </div>
+                            </div>
+
+                          </div>
+                        </div>  
+                        <div  class="col-md-6" [hidden]="!next">
+                            <small class="form-control-feedback"> Modificar N° Asientos  </small>
+                          <input type="number" min="0" placeholder="" formControlName="modify"><br/>
+                            <button type="button" class="btn btn-success" (click)="fill()">ok</button>
+                           
+                        </div>
+                      </div>
+
+                      <!-- Planta Alta -->
+                
+                  </div>
+                  <!-- Asientos planta alta -->
+                 
+            
+                  <div class="form-actions">
+                     <button type="submit" class="btn btn-success" > <i class="fa fa-check"></i> Actualizar</button>
+                     <button type="button" class="btn btn-inverse float-right" routerLink="/listbuses">Cancelar</button>
+                   </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

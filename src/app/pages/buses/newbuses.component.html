@@ -1,0 +1,458 @@
+
+<div class="row">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+              <form [formGroup]="form" class="m-4">
+                  <div class="form-body">
+                      <h3 class="card-title">Ingrese los datos del Bus</h3>
+                      <hr>
+                      <div class="row p-t-20">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Modelo</label>
+                                  <input type="text" id="firstName"  formControlName="model" #model class="form-control" placeholder="Mercedes Benz M2020" required>
+                                </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Vin</label>
+                                  <input type="text"   formControlName="vin" #vin class="form-control" placeholder="1GDJ7H1C81J590169" required>
+                              </div>
+                          </div>
+
+                          <!--/span-->
+                      </div>
+                      <!--/row-->
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Clase</label>
+                                  <select  formControlName="clase" #clase class="form-control custom-select" data-placeholder="Seleccione la clase" tabindex="1" required>
+                                      <option value="LEITO">Leito</option>
+                                      <option value="CONVENTIONAL">Cama</option>
+                                      <option value="SEMI_LEITO">Semicama</option>
+                                      <option value="FIRST_CLASS_SUITE">Suite</option>
+                                      <option value="EXECUTIVE">Ejecutiva</option>
+                                  </select>
+                                  <small class="form-control-feedback"> Seleccione las opciones </small>
+                              </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="">
+                                  <label class="">Comodidades</label><br>
+                                  
+                                <select  formControlName="amenities" #amenities class="form-control custom-select" required>
+                                      <option value="WIFI">Wifi</option>
+                                      <option value="TV">TV</option>
+                                      <option value="RADIO">Radio</option>
+                                      <option value="MUSIC">Música</option>
+                                      <option value="TOILED">Baño</option>
+                                      <option value="FOOD">Comida</option>
+                                      <option value="HOT_MEAL">Comida Caliente</option>
+                                      <option value="USB_CHARGER">Cargador USB</option>                    
+                                  </select><br>
+                                  
+                                 
+                                  <small class="form-control-feedback"> Seleccione las opciones </small><br>
+
+                            
+                              
+                                </div> 
+                          </div>
+                          <!--/span-->
+                      </div>
+                      <!--/row-->
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Plantas</label>
+                                  <article>
+                                      <select (change)="selectChangeHandler($event)" class="form-control custom-select" formControlName="plant">
+                                                  <option value="">Seleccione el N° de plantas</option>  
+                                                <option value="1p">1 Planta</option>
+                                                  <option value="2p">2 Plantas</option>
+                                              </select>
+                                      <small class="form-control-feedback">Seleccione el numero de plantas para agregar mas detalles </small>
+                                  </article>
+                              </div>
+                          </div>
+
+                      
+                                <div class="col-md-6" [hidden]="!seat">
+                                        <div class="form-group">
+                                                <label class="control-label">Número de Asientos</label>
+                                                <input type="text"   formControlName="availableSeats"  #availableSeats class="form-control" placeholder="N° Asientos" required>
+                                        </div>
+                                </div>
+
+                      </div>
+                      <!-- Planta Alta -->
+                      <div>
+                          <div *ngIf="selectedDay==='1p' else notShow" class="row">
+                              <div class="col-md-6">
+                                  <h3>Planta </h3>
+                                  <div class="row">
+                                      <div class="form-group col-md-4">
+                                          <small class="form-control-feedback">N° Columnas </small>
+                                          <select (change)="selectChangeHandler($event)" class="form-control custom-select">
+                                                  <option value="">Columnas</option>
+                                              <option value="4f">4 Columnas</option>  
+                                          <option value="3f">3 Columnas</option>                                               
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <ng-template #notShow>
+                          <div *ngIf="selectedDay==='2p' else notShow1">
+                              <div class="row justify-content-center">
+                                  <div class="col-md-6 text-center">
+                                      <h3>Planta Alta</h3>
+                                      <div class="row justify-content-center">
+                                          <div class="form-group col-md-4">
+                                              <small class="form-control-feedback">N° de Columnas </small>
+                                              <select (change)="selectChangeHandler($event)" class="form-control custom-select">
+                                                  <option value=""><small>Columnas</small></option>  
+                                                <option value="3af">3 Columnas</option>
+                                                  <option value="4af">4 Columnas</option>
+                                              </select>
+                                          </div>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6 text-center">
+                                      <h3>Planta Baja</h3>
+                                      <div class="row justify-content-center">
+                                     
+                                          <div class="form-group col-md-4">
+                                              <small class="form-control-feedback">N° Asientos </small>
+                                              <select (change)="selectChangeHandler($event)" class="form-control custom-select">
+                                                  <option value=""><small>Columnas</small></option>  
+                                                <option value="2bf">2 Columnas</option>
+                                                  <option value="3bf">3 Columnas</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </ng-template>
+                  </div>
+                  <!-- Asientos planta alta -->
+                  <div>
+                      <div *ngIf="selectedDay==='4af'">
+                          <div class="row">
+                              <h4> Planta Alta 4 Columnas</h4>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div  [formGroup]="bus2a4"  class="form-group col-md-4">
+                                <small class="form-control-feedback">N° Asientos  </small>
+                              <input type="number" min="0" placeholder="" formControlName="numero24"><br/>
+                                <button type="button" class="btn btn-success" (click)="fill24()">ok</button>
+                                <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="error24" >
+                                        El total de asientos no puede superar al número de asientos definido.
+                                      </div>  
+                            </div>
+                         
+                            <div class="col-md-6">
+                                <!-- tablero -->
+                                <div class="contenedor row justify-content-center">
+                                    <div class="bord" [hidden]="!table24"> 
+                                        <div class="grid"  style="border: 1px solid #E7ECED;">
+                                            <img src="assets/img/bus-volante.png">
+                                            <div style="width: 100px;"> 
+                                              <span class="seat" *ngFor="let col of seatsVect" (click)="seatClicked(col)" 
+                                                      [ngSwitch]="getStatus(col)">
+                                                  <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png">
+                                                  <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                                  <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                                              </span>
+                                          </div> 
+                                        </div>
+                                 
+                                  <div style="margin-top: 5px;">
+                                    <img src="assets/img/seat_available.png">  Disponible
+                                    <br/>
+                                    <img src="assets/img/seat_selected.png" class="">  Selecionado
+
+                                  </div>
+                                  <span ><button type="button" style="margin-top: 40px !important; margin-bottom: 15px !important;" class="btn btn-success" (click)="nextStep()">Continuar</button></span>
+
+                              </div>
+                                </div>
+                                <div class="col-md-6" *ngIf="next">
+                                    <h3>Planta Baja</h3>
+                                    <div class="row">
+                                        <div class="form-group col-md-9">
+                                            <small class="form-control-feedback">N° Asientos </small>
+                                            <select (change)="selectChangeHandler($event)" class="form-control custom-select">
+                                                <option value=""><small>Columnas</small></option>  
+                                              <option value="2bf">2 Columnas</option>
+                                                <option value="3bf">3 Columnas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="selectedDay==='3af'">
+                          <div class="row">
+                              <h4> Planta Alta 3 Columnas</h4>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div [formGroup]="bus2a3" class="form-group col-md-4">
+                                <small class="form-control-feedback">N° Asientos </small>
+                              <input type="number" min="0" placeholder="" formControlName="numero23"><br/>
+                                <button type="button" class="btn btn-success" (click)="fill23()">ok</button>
+                                <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="error23" >
+                                        El total de asientos no puede superar al número de asientos definido.
+                                      </div>  
+                            </div>
+                         
+                            <div class="col-md-6">
+                                <!-- tablero -->
+                                <div class="contenedor row justify-content-center">
+                                    <div class="bord" [hidden]="!table23"> 
+                                    <div class="grid"  style="border: 1px solid #E7ECED;">
+                                      <img src="assets/img/bus-volante.png">
+                                      <div style="width: 80px;"> 
+                                        <span class="seat" *ngFor="let col of seatsVect" (click)="seatClicked(col)" 
+                                                [ngSwitch]="getStatus(col)">
+                                            <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png">
+                                            <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                            <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                                        </span>
+                                    </div> 
+                                  </div>
+                                 
+                                  <div style="margin-top: 5px;">
+                                    <img src="assets/img/seat_available.png">  Disponible
+                                    <br/>
+                                    <img src="assets/img/seat_selected.png" class="">  Seleccionado
+                                  </div>
+                                  <span ><button type="button" style="margin-top: 40px !important; margin-bottom: 15px !important;" class="btn btn-success" (click)="nextStep()">Continuar</button></span>
+                              
+                          </div>
+                                </div>
+                                <div class="col-md-6 " *ngIf="next">
+                                    <h3>Planta Baja</h3>
+                                    <div class="row">
+                                   
+                                        <div class="form-group col-md-9">
+                                            <small class="form-control-feedback">N° Asientos </small>
+                                            <select (change)="selectChangeHandler($event)" class="form-control custom-select">
+                                                <option value=""><small>Columnas</small></option>  
+                                              <option value="2bf">2 Columnas</option>
+                                                <option value="3bf">3 Columnas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                   
+                      <div *ngIf="selectedDay==='3bf'">
+                          <div class="row">
+                              <h4> Planta baja 3 Columnas</h4>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div [formGroup]="bus2b3"   class="form-group col-md-4">
+                                <small class="form-control-feedback">N° Asientos  </small>
+                              <input type="number" min="0"  placeholder="" formControlName="numero2b3"><br/>
+                                <button type="button" class="btn btn-success" (click)="fill2b3()">ok</button>
+                                <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="error2b3" >
+                                        El total de asientos no debe superar al número de asientos de la planta alta ni al total definido.
+                                      </div> 
+                            </div>             
+                           <div class="col-md-6">
+                                <!-- tablero -->
+                                <div class="contenedor row justify-content-center">
+                                    <div class="bord"> 
+                                    <div class="grid" [hidden]="!table2b3" style="border: 1px solid #E7ECED;">
+                                      <img src="assets/img/bus-volante.png">
+                                      <div style="width: 80px;"> 
+                                        <span class="seat" *ngFor="let col of seatsPb" (click)="seatClicked2(col)" 
+                                                [ngSwitch]="getStatus2(col)">
+                                            <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png">
+                                            <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                            <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <div style="margin-top: 5px;" [hidden]="!table2b3">
+                                    <img src="assets/img/seat_available.png">  Disponible
+                                    <br/>
+                                    <img src="assets/img/seat_selected.png" class="">  Seleccionado
+                                  </div>
+                              </div>
+                            <!--  {{seatsPb|json}}-->
+                                </div>
+                            </div>
+                        </div>           
+                      </div>
+                      <div *ngIf="selectedDay==='2bf'">
+                          <div class="row">
+                              <h4> Planta baja 2 Columnas</h4>
+                          </div>
+                          <div class="row justify-content-center">
+                            <div [formGroup]="bus2b2"   class="form-group col-md-4">
+                                <small class="form-control-feedback">N° Asientos  </small>
+                              <input type="number" min="0" placeholder="" formControlName="numero2b2"><br/>
+                                <button type="button" class="btn btn-success" (click)="fill2b2()">ok</button>
+                                <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="error2b2" >
+                                        El total de asientos no debe superar al número de asientos de la planta alta ni al total definido.
+                                      </div> 
+                            </div>
+                         
+                            <div class="col-md-6">
+                                <!-- tablero -->
+                                <div class="contenedor row justify-content-center">
+                                    <div class="bord"> 
+                                    <div class="grid" [hidden]="!table2b2" style="border: 1px solid #E7ECED;">
+                                      <img src="assets/img/bus-volante.png">
+                                      <div style="width: 60px;"> 
+                                        <span class="seat" *ngFor="let col of seatsPb" (click)="seatClicked2(col)" 
+                                                [ngSwitch]="getStatus2(col)">
+                                            <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png">
+                                            <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                            <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <div style="margin-top: 5px;" [hidden]="!table2b2">
+                                    <img src="assets/img/seat_available.png">  Disponible
+                                    <br/>
+                                    <img src="assets/img/seat_selected.png" class="">  Seleccionado
+                                  </div>
+                              </div>
+                              <!--{{seatsPb|json}}-->
+                                </div>
+                                
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+      <div class="card">
+          <div class="card-body">
+              <div *ngIf="selectedDay==='4f' else notShow2">
+                  <div class="row justify-content-center">
+                      <div [formGroup]="bus"   class="form-group col-md-4">
+                          <small class="form-control-feedback">N° Asientos  </small>
+                        <input type="number" min="0" placeholder="" formControlName="numero"><br/>
+                          <button type="button" class="btn btn-success" (click)="fill14()">ok</button>
+                         
+                          <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="error14" >
+                                Debe indicar el número de asientos.
+                         </div>  
+                         <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="seat14" >
+                                El total de asientos debe ser igual o menor al número de asientos definido.
+                         </div>   
+
+                      </div>
+                      <div class="col-md-6">
+                          <h4> Planta  4 Columnas </h4>
+                          <!-- tablero -->
+                          <div class="contenedor row justify-content-center">  
+                              <div class="bord"> 
+                              <div class="grid" [hidden]="!table" style="border: 1px solid #E7ECED;">
+                                <img src="assets/img/bus-volante.png">
+                                    <div style="width: 100px;"> 
+                                    <span class="seat" *ngFor="let col of seatsVect" (click)="seatClicked(col)" 
+                                            [ngSwitch]="getStatus(col)">
+                                        <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png">
+                                        <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                        <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                                    </span>
+                                </div>    
+                            </div>
+                            <div style="margin-top: 5px;" [hidden]="!table">
+                                <img src="assets/img/seat_available.png">  Disponible
+                                <br/>
+                                <img src="assets/img/seat_selected.png" class="">  Seleccionado
+                              </div>     
+                        </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+           
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="selectedDay==='3f' else notShow2">
+                    <div class="row justify-content-center">
+                        <div [formGroup]="bus13"  class="form-group col-md-4">
+                            <small class="form-control-feedback">N° Asientos  </small>
+                          <input type="number"  min="0" formControlName="numero13" placeholder="" ><br/>
+                            <button type="button" class="btn btn-success" (click)="fill13()">ok</button>
+                            <div class="alert alert-info" style="margin-top: 20px !important;" role="alert" *ngIf="error13" >
+                                    El total de asientos debe ser igual o menor al número de asientos definido.
+                                  </div> 
+                        </div>
+                        <div class="col-md-6">
+                            <h4> Planta  3 Columnas </h4>
+                            <!-- tablero -->
+                            <div class="contenedor row justify-content-center">
+                                <div class="bord" > 
+                                    <div class="grid" [hidden]="!table13" style="border: 1px solid #E7ECED;">
+                                        <img src="assets/img/bus-volante.png">
+                                            <div style="width: 80px;"> 
+                                            <span class="seat" *ngFor="let col of seatsVect" (click)="seatClicked(col)" 
+                                                    [ngSwitch]="getStatus(col)">
+                                                <img *ngSwitchCase="'selected'" src="assets/img/seat_selected.png">
+                                                <img *ngSwitchCase="'reserved'" src="assets/img/seat_reserved.png" >
+                                                <img *ngSwitchDefault src="assets/img/seat_available.png"> 
+                                            </span>
+                                        </div>    
+                                    </div>
+                              <div style="margin-top: 5px;" [hidden]="!table13">
+                                <img src="assets/img/seat_available.png">  Disponible
+                                <br/>
+                                <img src="assets/img/seat_selected.png" class="">  Seleccionado
+                              </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="row" [hidden]="!data">
+    <div class="col-md-12"> 
+    <div class="alert alert-info" role="alert">
+        Un error interno ha ocurrido por favor contacte con el Administrador del Sistema.
+      </div>
+    </div>
+  </div>
+<!--<p>Numero de asientos disponibles:{{resultado}}</p>-->
+<hr>
+
+
+<div class="form-actions">
+  <button type="submit" [disabled]="!form.value.model || !form.value.availableSeats
+  || !form.value.vin || !form.value.clase "  class="btn btn-success" (click)="saveData()"> <i class="fa fa-check"></i> Guardar</button>
+  <button type="button" class="btn btn-inverse float-right" routerLink="/listbuses">Cancelar</button>
+</div>

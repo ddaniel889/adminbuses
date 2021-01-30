@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class=" text-right">
+                    <button type="button" class="btn waves-effect waves-light btn-rounded btn-success">
+                    <i class="fa fa-plus">Agregar nueva ciudad</i>
+                  </button>
+                </div>
+                <h3 class="card-title">Ingrese los datos</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="inputAddress">Ciudad</label>
+                            <input type="text" class="form-control" [(ngModel)]="citiesDetails.fullName" placeholder="Ciudad">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <label for="inputAddres">Dirección</label>
+                            <input type="text" class="form-control" [(ngModel)]="citiesDetails.cityUrl" placeholder="Departamento">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class=" text-center m-3">
+                <div class="col-xs-12">
+                    <button type="button" class="btn btn-primary" (click)="addCity()">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="button" class="btn btn-inverse" routerLink="/">Cancelar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

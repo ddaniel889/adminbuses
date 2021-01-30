@@ -1,0 +1,56 @@
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Modelo</th>
+                      <th>Asientos Disponibles</th>
+                      <th>Vin</th>
+                      <th>Comodidades</th>
+                      <th>Clase</th>
+                   
+                  </tr>
+              </thead>
+              <tbody>
+                
+                  <tr *ngFor="let bus of buses; let i = index">
+                      <td>{{i+1}}</td>
+                      <td> {{bus.model}} </td>
+                      <td> {{bus.availableSeats}} </td>
+                      <td> {{bus.vin}} </td>
+                      <td> {{bus.amenities}} </td>
+                      <td> {{bus.class}} </td>
+               
+                      <td>
+                      <button  class="btn btn-primary large" [routerLink]="['/updabuses/',bus.id]">  
+                          Actualizar <i class="fa fa-save"></i>&nbsp;
+                      </button>
+                          <button (click)="deleteBus(bus.id)" class="btn btn-danger">Eliminar
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+
+     </div> 
+     </div>  
+
+</div>
+</div>
+<hr>
+<div class="row" *ngIf="buses.length ==0">
+    <div class="col-md-12"> 
+    <div class="alert alert-info" role="alert">
+        No se encontraron resultados.
+      </div>
+    </div>
+  </div>
+
+<div class="form-actions">
+  <button type="button" class="btn btn-inverse float-right" routerLink="/listbuses">Volver</button>
+</div>

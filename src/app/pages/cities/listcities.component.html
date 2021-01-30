@@ -1,0 +1,89 @@
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar ciudad">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="example-container mat-elevation-z8">
+
+                    <mat-table #table matSort [dataSource]="dataSource">
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="fullName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad </mat-header-cell>
+                            <mat-cell *matCellDef="let cities"> {{cities.fullName}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="cityUrl">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Departamento </mat-header-cell>
+                            <mat-cell *matCellDef="let cities"> {{cities.cityUrl}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="location.geohash">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+                            <mat-cell *matCellDef="let cities"> {{cities.location.geohash}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="location.lat">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Latitud </mat-header-cell>
+                            <mat-cell *matCellDef="let cities"> {{cities.location.lat}} </mat-cell>
+                        </ng-container>
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="location.lon">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Longitud </mat-header-cell>
+                            <mat-cell *matCellDef="let cities"> {{cities.location.lon}} </mat-cell>
+                        </ng-container>
+                        <!-- actions -->
+
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef>
+
+                                <button type="button" class="btn btn-success" routerLink="/newcities">
+                                    <i class="fa fa-plus">Agregar</i>
+                                  </button>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let cities">
+                                <span class="btn btn-primary" routerLink="/updatecities/{{cities.id}}">
+                                    <i class="fa fa-pencil"></i>
+                                   </span>
+                                <span class="btn btn-danger"> 
+                                    <i class="fa fa-trash-o"></i>
+                                </span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[1, 10, 25, 100]">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
